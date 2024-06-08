@@ -9,7 +9,7 @@ const Navbar = () => {
           <img src={Logo} alt="Koleje Małopolskie" className="w-24 h-auto"></img>
         </div>
         <div className="flex-shrink-0">
-          <a href="/" className="text-blue-950 font-bold text-xl">Koleje Małopolskie - Route Tracker</a>
+          <a href="/" className="text-blue-950 font-bold text-xl">Koleje Małopolskie - Monitor Tras</a>
         </div>
         <div className="hidden md:block">
           <a href="/" className="text-blue-950 mr-4 hover:text-blue-500">Kontakt</a>

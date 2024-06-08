@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import SearchForm from './SearchForm';
+
+import React from 'react';
 import CardSection from './CardSection';
+import MapSection from './MapSection';
 import trainImage from '../assets/train.jpg';
 
 const Map = () => {
@@ -28,20 +27,7 @@ const Map = () => {
             <CardSection />
           </div>
         </nav>
-        <MapContainer
-          center={[50.0615, 19.937]}
-          zoom={9}
-          minZoom={9}
-          maxZoom={14}
-          maxBounds={bounds}
-          maxBoundsViscosity={1.0}
-          className="flex-grow"
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-        </MapContainer>
+        <MapSection bounds={bounds} />
       </div>
     </div>
   );
