@@ -7,8 +7,8 @@ import stopsData from '../data/stop';
 
 const Map = () => {
   const bounds = [
-    [49.002, 19.243],
-    [50.505, 21.053],
+    [48.5, 18.5],
+    [50.8, 21.8],
   ];
 
   const markIcon = L.icon({
@@ -34,7 +34,7 @@ const Map = () => {
       <div className="flex flex-col h-screen">
         <MapContainer
           center={[50.0615, 19.937]}
-          zoom={12}
+          zoom={10}
           minZoom={9}
           maxZoom={14}
           maxBounds={bounds}

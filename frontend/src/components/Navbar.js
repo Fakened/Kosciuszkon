@@ -17,11 +17,11 @@ const Navbar = () => {
         <div className="">
           <img src={Logo} alt="Koleje Małopolskie" className="w-24 h-auto" />
         </div>
-        <div className="flex-shrink-0">
+        <div className="hidden md:block flex-shrink-0">
           <a href="/" className="text-blue-950 font-bold text-xl">Koleje Małopolskie - Monitor Tras</a>
         </div>
-        <div className="hidden md:block">
-          <a href="/" className="text-blue-950 mr-4 hover:text-blue-500">Kontakt</a>
+        <div className="flex-shrink-0">
+          <a href="/" className="text-blue-950 text-base mr-4 hover:text-blue-500">Kontakt</a>
         </div>
       </div>
     </nav>
