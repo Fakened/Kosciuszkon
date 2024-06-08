@@ -14,12 +14,12 @@ class TransportTypes(models.IntegerChoices):
     MONORAIL = 12, 'Monorail'
 
 class Routes(models.Model):
-    route_id = models.AutoField(primary_key=True, blank=False, null=False)
-    agency_id = models.ForeignKey(Agency, on_delete=models.CASCADE, blank=True, null=True)
-    route_short_name = models.TextField(blank=True, null=True)
-    route_long_name = models.TextField(blank=True, null=True)
-    route_desc = models.TextField(blank=False, null=True)
-    route_type = models.IntegerField(blank=False, null=False, choices=TransportTypes.choices)
+    route_id = models.CharField(max_length=255, primary_key=True)
+    agency = models.ForeignKey(Agency, on_delete=models.CASCADE, blank=True, null=True)
+    route_short_name = models.CharField(max_length=255)
+    route_long_name = models.CharField(max_length=255)
+    route_desc = models.CharField(max_length=255, blank=True, null=True)
+    route_type = models.IntegerField(choices=TransportTypes.choices)
     route_url = models.TextField(blank=True, null=True)
-    route_color = models.TextField(blank=False, null=False)
-    route_text_color = models.TextField(blank=False, null=False)
+    route_color = models.CharField(max_length=6, blank=True, null=True)
+    route_text_color = models.CharField(max_length=6, blank=True, null=True)

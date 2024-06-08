@@ -13,12 +13,12 @@ class WheelchairAccessibleType(models.IntegerChoices):
     NOT_ACCESSIBLE = 2, 'Not accessible'
 
 class Trips(models.Model):
-    route_id = models.ForeignKey(Routes, blank=False, null=False, on_delete=models.CASCADE)
-    service_id = models.ForeignKey(Calendar, blank=False, null=False, on_delete=models.CASCADE)
-    trip_id = models.AutoField(primary_key=True, blank=False, null=False)
-    trip_headsign = models.TextField(blank=True, null=True)
-    trip_short_name = models.TextField(blank=True, null=True)
-    direction_id = models.IntegerField(blank=False, null=True, choices=DirectionType.choices)
-    block_id = models.TextField(blank=False, null=True)
-    shape_id = models.ForeignKey(Shapes, blank=False, null=False, on_delete=models.CASCADE)
-    wheelchair_accessible = models.IntegerField(blank=False, null=True, choices=WheelchairAccessibleType.choices)
+    trip_id = models.CharField(max_length=255, primary_key=True)
+    route = models.ForeignKey(Routes, on_delete=models.CASCADE)
+    service = models.ForeignKey(Calendar, on_delete=models.CASCADE)
+    trip_headsign = models.CharField(max_length=255, blank=True, null=True)
+    trip_short_name = models.CharField(max_length=255, blank=True, null=True)
+    direction_id = models.IntegerField(blank=True, null=True, choices=DirectionType.choices)
+    block_id = models.CharField(max_length=255, blank=True, null=True)
+    shape_id = models.ForeignKey(Shapes, on_delete=models.CASCADE, blank=True, null=True)
+    wheelchair_accessible = models.IntegerField(blank=True, null=True, choices=WheelchairAccessibleType.choices)
