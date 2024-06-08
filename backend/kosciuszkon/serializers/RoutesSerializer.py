@@ -1,4 +1,4 @@
-from django_rest_framework import serializers
+from rest_framework import serializers
 from kosciuszkon.models import Routes
 
 class RoutesSerializer(serializers.ModelSerializer):
