@@ -3,6 +3,7 @@ import PageHelmet from './components/PageHelmet';
 import Navbar from './components/Navbar';
 import Map from './components/IMap';
 import CardSection from './components/CardSection';
+import Schedule from './components/Schedule';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Navbar />
       <CardSection />
       <Map />
+      <Schedule/>
     </div>
   );
 }
