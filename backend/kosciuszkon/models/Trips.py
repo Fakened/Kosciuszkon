@@ -15,7 +15,7 @@ class WheelchairAccessibleType(models.IntegerChoices):
 class Trips(models.Model):
     route_id = models.ForeignKey(Routes, blank=False, null=False, on_delete=models.CASCADE)
     service_id = models.ForeignKey(Calendar, blank=False, null=False, on_delete=models.CASCADE)
-    trip_id = models.AutoField(primary_key=True, blank=False, null=False)
+    trip_id = models.IntegerField(primary_key=True)
     trip_headsign = models.TextField(blank=True, null=True)
     trip_short_name = models.TextField(blank=True, null=True)
     direction_id = models.IntegerField(blank=False, null=True, choices=DirectionType.choices)

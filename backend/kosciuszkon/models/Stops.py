@@ -9,7 +9,7 @@ class LocationType(models.IntegerChoices):
 
 
 class Stops(models.Model):
-    stop_id = models.AutoField(primary_key=True)
+    stop_id = models.IntegerField(primary_key=True)
     stop_code = models.TextField(blank=False, null=True)
     stop_name = models.TextField(blank=False, null=False)
     stop_desc = models.TextField(blank=False, null=True)

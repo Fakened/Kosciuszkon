@@ -14,7 +14,7 @@ class TransportTypes(models.IntegerChoices):
     MONORAIL = 12, 'Monorail'
 
 class Routes(models.Model):
-    route_id = models.AutoField(primary_key=True, blank=False, null=False)
+    route_id = models.Field(primary_key=True, blank=False, null=False)
     agency_id = models.ForeignKey(Agency, on_delete=models.CASCADE, blank=True, null=True)
     route_short_name = models.TextField(blank=True, null=True)
     route_long_name = models.TextField(blank=True, null=True)
