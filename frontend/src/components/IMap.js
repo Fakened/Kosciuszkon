@@ -1,10 +1,9 @@
-// MapWithSidebar.js
 import React, { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchForm from './SearchForm';
-import Logo from '../assets/Logo.png'
 import CardSection from './CardSection';
+import trainImage from '../assets/train.jpg';
 
 const MapWithSidebar = () => {
   const bounds = [
@@ -21,12 +20,21 @@ const MapWithSidebar = () => {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
       <div className="flex flex-col h-screen">
-        <nav className="bg-neutral-200 p-4">
+        <nav
+          className="bg-neutral-200 p-4"
+          style={{
+            backgroundImage: `url(${trainImage})`,
+            backgroundPosition: 'center 10%',
+            backgroundSize: 'cover',
+            borderTop: '1px solid black',
+            borderBottom: '1px solid black' 
+          }}
+        >
           <div>
             <CardSection />
           </div>
         </nav>
-        <SearchForm isOpen={sidebarOpen} /> {/* Use your new component */}
+        <SearchForm isOpen={sidebarOpen} />
         <MapContainer
           center={[50.0615, 19.937]}
           zoom={9}
