@@ -29,12 +29,12 @@ const Map = () => {
     ));
   };
 
-  return (
-    <div className="relative h-screen w-screen overflow-hidden z-40">
+  return (  
+    <div className="relative overflow-hidden z-40">
       <div className="flex flex-col h-screen">
         <MapContainer
           center={[50.0615, 19.937]}
-          zoom={10}
+          zoom={9}
           minZoom={9}
           maxZoom={14}
           maxBounds={bounds}
