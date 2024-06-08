@@ -1,7 +1,7 @@
 from django.db import models
 from .Agency import Agency
 
-class TransportTypes(models.TextChoices):
+class TransportTypes(models.IntegerChoices):
     TRAM_STREETCAR_LIGHT_RAIL = 0, 'Tram, Streetcar, Light rail'
     SUBWAY_METRO = 1, 'Subway, Metro'
     RAIL = 2, 'Rail'
@@ -19,7 +19,7 @@ class Routes(models.Model):
     route_short_name = models.TextField(blank=False, null=False)
     route_long_name = models.TextField(blank=False, null=False)
     route_desc = models.TextField(blank=False, null=True)
-    route_type = models.TextField(blank=False, null=False, choices=TransportTypes.choices)
+    route_type = models.IntegerField(blank=False, null=False, choices=TransportTypes.choices)
     route_url = models.URLField(blank=False, null=False)
     route_color = models.TextField(blank=False, null=False)
     route_text_color = models.TextField(blank=False, null=False)

@@ -1,6 +1,6 @@
 from .Agency import Agency
 from .Calendar import Calendar
-from .CalendarDate import CalendarDate
+from .CalendarDates import CalendarDates
 from .FeedInfo import FeedInfo
 from .Routes import Routes
 from .Shapes import Shapes
