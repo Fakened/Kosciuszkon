@@ -11,7 +11,7 @@ class TransferType(models.IntegerChoices):
     
 
 class Transfers(models.Model):
-    from_stop_id = models.ForeignKey(Stops, blank=False, null=False, on_delete=models.CASCADE, related_name='transfers_from')
-    to_stop_id = models.ForeignKey(Stops, blank=False, null=False, on_delete=models.CASCADE, related_name='transfers_to')
-    transfer_type = models.IntegerField(blank=False, null=False, choices=TransferType.choices)
-    min_transfer_time = models.PositiveIntegerField(blank=False, null=True)
+    from_stop = models.ForeignKey(Stops, on_delete=models.CASCADE, related_name='transfers_from')
+    to_stop = models.ForeignKey(Stops, on_delete=models.CASCADE, related_name='transfers_to')
+    transfer_type = models.IntegerField(choices=TransferType.choices, blank=True, null=True)
+    min_transfer_time = models.PositiveIntegerField(blank=True, null=True)

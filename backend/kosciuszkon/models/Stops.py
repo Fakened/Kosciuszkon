@@ -9,12 +9,12 @@ class LocationType(models.IntegerChoices):
 
 
 class Stops(models.Model):
-    stop_id = models.IntegerField(primary_key=True)
-    stop_code = models.TextField(blank=False, null=True)
-    stop_name = models.TextField(blank=False, null=False)
-    stop_desc = models.TextField(blank=False, null=True)
-    stop_lat = models.TextField(blank=False, null=False)
-    stop_lon = models.TextField(blank=False, null=False)
+    stop_id = models.CharField(max_length=255, primary_key=True)
+    stop_code = models.CharField(max_length=255, blank=True, null=True)
+    stop_name = models.CharField(max_length=255)
+    stop_desc = models.CharField(max_length=255, blank=True, null=True)
+    stop_lat = models.FloatField()
+    stop_lon = models.FloatField()
     stop_url = models.TextField(blank=True, null=True)
-    location_type = models.IntegerField(blank=False, null=True, choices=LocationType.choices)
+    location_type = models.IntegerField(blank=True, null=True, choices=LocationType.choices)
     parent_station = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)

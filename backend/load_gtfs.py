@@ -95,9 +95,11 @@ def save_trips(gtfs_data):
         df['wheelchair_accessible'] = df['wheelchair_accessible'].replace({np.nan: 0})
         for _, row in df.iterrows():
             data_row = row.to_dict()
-            data_row['route_id'] = int(data_row['route_id'])
+            data_row['route'] = int(data_row['route_id'])
             data_row['direction_id'] = int(data_row['direction_id'])
             data_row['wheelchair_accessible'] = int(data_row['wheelchair_accessible'])
+            data_row['service'] = int(data_row['service_id'])
+            data_row['trip_id'] = int(data_row['trip_id'])
 
             serializer = TripsSerializer(data=data_row)
             if serializer.is_valid():
@@ -172,7 +174,11 @@ def save_transfers(gtfs_data):
         print('transfers')
         df = gtfs_data['transfers']
         for _, row in df.iterrows():
-            serializer = TransfersSerializer(data=row.to_dict())
+            row_data = row.to_dict()
+            row_data['from_stop'] = int(row_data['from_stop_id'])
+            row_data['to_stop'] = int(row_data['to_stop_id'])
+            # print(row_data)
+            serializer = TransfersSerializer(data=row_data)
             if serializer.is_valid():
                 serializer.save()
             else:
@@ -191,6 +197,8 @@ def save_stop_times(gtfs_data):
             
             row_data['arrival_time'] = normalize_time(row_data['arrival_time'])
             row_data['departure_time'] = normalize_time(row_data['departure_time'])
+            row_data['trip'] = int(row_data['trip_id'])
+            row_data['stop'] = int(row_data['stop_id'])
             
             serializer = StopTimesSerializer(data=row_data)
             if serializer.is_valid():

@@ -5,7 +5,7 @@ class WeekDayAvailability(models.IntegerChoices):
     NOT_AVAILABLE = 1, 'Not available'
 
 class Calendar(models.Model):
-    service_id = models.IntegerField(primary_key=True)
+    service_id = models.CharField(max_length=255, primary_key=True)
     monday = models.IntegerField(blank=False, null=False, choices=WeekDayAvailability.choices)
     tuesday = models.IntegerField(blank=False, null=False, choices=WeekDayAvailability.choices)
     wednesday = models.IntegerField(blank=False, null=False, choices=WeekDayAvailability.choices)
