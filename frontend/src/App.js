@@ -8,7 +8,9 @@ const App = () => {
   return (
     <div>
       <PageHelmet title="KM - Route Tracker"/>
+      <Navbar />
       <Map />
+      <Card />
     </div>
   )
 }

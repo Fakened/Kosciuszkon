@@ -20,7 +20,7 @@ const MapWithSidebar = () => {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
       <div className="flex flex-col h-screen">
-        <nav className="bg-white p-4">
+        <nav className="bg-neutral-200 p-4">
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             <div className="">
               <img src={Logo} alt="Koleje Małopolskie" className="w-24 h-auto"></img>
