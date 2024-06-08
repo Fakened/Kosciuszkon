@@ -10,7 +10,7 @@ const Card = ({ title, description, form }) => {
   };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-[#385088] m-4" style={{ width: '350px', height: '180px' }}>
+    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-[#385088] m-4" style={{ width: '350px', height: '180px' }}>
       <div className="px-6 py-4">
         <div className="text-white font-bold text-xl mb-2 text-center">{title}</div>
         <p className="text-neutral-100 text-base text-center">{description}</p>

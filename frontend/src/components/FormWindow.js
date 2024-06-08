@@ -1,5 +1,5 @@
 import React from 'react';
-import TrainScheduleTable from './ScheduleTable';
+import TrainScheduleTable from './TrainScheduleTable';
 
 const FormWindow = ({ onClose, formType, title }) => {
   const handleSubmit = (e) => {

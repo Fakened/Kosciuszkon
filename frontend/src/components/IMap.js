@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -10,15 +10,7 @@ const Map = () => {
     [49.002, 19.243],
     [50.505, 21.053],
   ];
-
-  const krakowStops = [
-    { lat: 50.0647, lng: 19.945 },
-    { lat: 50.0615, lng: 19.937 },
-    { lat: 50.0511, lng: 19.935 },
-    { lat: 50.0514, lng: 19.937 },
-    { lat: 50.0467, lng: 19.948 },
-  ];
-
+  
   const markIcon = L.icon({
     iconUrl: MarkIcon,
     iconSize: [32, 32],
