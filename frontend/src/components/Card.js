@@ -22,7 +22,7 @@ const Card = ({ title, description, form }) => {
             Wyszukaj
           </button>
         </div>
-        {showForm && <FormWindow onClose={toggleForm} formType={form} />}
+        {showForm && <FormWindow onClose={toggleForm} formType={form} title={title} />}
       </div>
     </div>
   );
