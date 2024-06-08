@@ -1,4 +1,4 @@
-import Logo from '../assets/Logo_Koleje_Małopolskie.png'
+import Logo from '../assets/Logo.png'
 import React from 'react';
 
 const Navbar = () => {
