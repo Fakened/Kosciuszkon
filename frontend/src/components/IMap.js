@@ -1,15 +1,16 @@
+// MapWithSidebar.js
+import React, { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import 'tailwindcss/tailwind.css';
 
-const Map = () => {
+const MapWithSidebar = () => {
   const bounds = [
-    [49.002, 19.243], // południowo-zachodni kraniec
-    [50.505, 21.053]  // północno-wschodni kraniec
+    [49.002, 19.243],
+    [50.505, 21.053]
   ];
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="relative h-screen w-screen overflow-hidden">
       <MapContainer
         center={[50.0615, 19.937]}
         zoom={9}
@@ -28,4 +29,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default MapWithSidebar;
