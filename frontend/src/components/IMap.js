@@ -1,14 +1,22 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkIcon from '../assets/Mark.png'; 
-import stopsData from '../data/stop';
+import { krakowStops, malopolskaRoutes, routeColors } from './data';
 
 const Map = () => {
   const bounds = [
-    [48.5, 18.5],
-    [50.8, 21.8],
+    [49.002, 19.243],
+    [50.505, 21.053],
+  ];
+
+  const krakowStops = [
+    { lat: 50.0647, lng: 19.945 },
+    { lat: 50.0615, lng: 19.937 },
+    { lat: 50.0511, lng: 19.935 },
+    { lat: 50.0514, lng: 19.937 },
+    { lat: 50.0467, lng: 19.948 },
   ];
 
   const markIcon = L.icon({
@@ -18,15 +26,27 @@ const Map = () => {
     popupAnchor: [0, -32],
   });
 
-  const renderStops = () => {
-    return stopsData.map((stop) => (
+  const renderKrakowStops = () => {
+    return krakowStops.map((stop) => (
       <Marker key={stop.id} position={[stop.lat, stop.lng]} icon={markIcon}>
         <Popup>
-          {stop.name}<br />
-          {stop.address}
+          Przystanek Kraków {stop.id}
         </Popup>
       </Marker>
     ));
+  };
+
+  const renderRoutes = () => {
+    return malopolskaRoutes.map((route) => {
+      const positions = route.stopIds.map(stopId => {
+        const stop = krakowStops.find(s => s.id === stopId);
+        return [stop.lat, stop.lng];
+      });
+
+      return (
+        <Polyline key={route.id} positions={positions} color={routeColors[route.id]} />
+      );
+    });
   };
 
   return (  
@@ -45,7 +65,8 @@ const Map = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          {renderStops()}
+          {renderKrakowStops()}
+          {renderRoutes()}
         </MapContainer>
       </div>
     </div>
