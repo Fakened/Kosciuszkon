@@ -1,4 +1,4 @@
-from django_rest_framework import serializers
+from rest_framework import serializers
 from kosciuszkon.models import Calendar
 
 class CalendarSerializer(serializers.ModelSerializer):

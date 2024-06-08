@@ -15,6 +15,6 @@ class Stops(models.Model):
     stop_desc = models.TextField(blank=False, null=True)
     stop_lat = models.TextField(blank=False, null=False)
     stop_lon = models.TextField(blank=False, null=False)
-    stop_url = models.URLField(blank=False, null=True)
+    stop_url = models.TextField(blank=True, null=True)
     location_type = models.IntegerField(blank=False, null=True, choices=LocationType.choices)
     parent_station = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)

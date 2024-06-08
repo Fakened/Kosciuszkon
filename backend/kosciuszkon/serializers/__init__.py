@@ -8,3 +8,4 @@ from .StopsSerializer import StopsSerializer
 from .TripsSerializer import TripsSerializer
 from .ShapesSerializer import ShapesSerializer
 from .FeedInfoSerializer import FeedInfoSerializer
+from .TransfersSerializer import TransfersSerializer

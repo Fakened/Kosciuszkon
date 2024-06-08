@@ -11,3 +11,4 @@ python-dotenv
 drf-yasg
 django-environ
 gtfsdb
+pandas

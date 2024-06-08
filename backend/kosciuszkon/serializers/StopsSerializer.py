@@ -1,7 +1,7 @@
-from django_rest_framework import serializers
+from rest_framework import serializers
 from kosciuszkon.models import Stops
 
-class ShapesSerializer(serializers.ModelSerializer):
+class StopsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stops
         fields = '__all__'
