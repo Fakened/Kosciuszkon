@@ -1,4 +1,4 @@
-// src/components/CardSection.js
+
 import React from 'react';
 import Card from './Card';
 
@@ -6,15 +6,15 @@ const CardSection = () => {
   const cards = [
     {
       title: 'Szybkie Połaczenie',
-      description: 'This is the description for card 1.',
+      description: 'Natychmiastowe Wyznaczanie Trasy',
     },
     {
       title: 'Zaplanuj Podróż',
-      description: 'This is the description for card 2.',
+      description: 'Spersonalizowane Planowanie',
     },
     {
       title: 'Sprawdź Rozkład',
-      description: 'This is the description for card 3.',
+      description: 'Pełen Rozkład Jazdy',
     },
   ];
 
@@ -22,7 +22,7 @@ const CardSection = () => {
     <div className="w-full bg-cover bg-center flex items-center justify-center">
       <div className="flex flex-wrap justify-center">
         {cards.map((card, index) => (
-          <div key={index} className="mx-12"> {/* Add margin here */}
+          <div key={index} className="mx-12">
             <Card
               title={card.title}
               description={card.description}

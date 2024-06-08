@@ -12,7 +12,7 @@ const Navbar = () => {
           <a href="/" className="text-blue-950 font-bold text-xl">Koleje Małopolskie - Route Tracker</a>
         </div>
         <div className="hidden md:block">
-          <a href="/" className="text-blue-950 mr-4 hover:text-blue-500">Wyszukaj</a>
+          <a href="/" className="text-blue-950 mr-4 hover:text-blue-500">Kontakt</a>
         </div>
       </div>
     </nav>

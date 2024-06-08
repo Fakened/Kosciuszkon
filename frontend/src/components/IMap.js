@@ -5,17 +5,11 @@ import SearchForm from './SearchForm';
 import CardSection from './CardSection';
 import trainImage from '../assets/train.jpg';
 
-const MapWithSidebar = () => {
+const Map = () => {
   const bounds = [
     [49.002, 19.243],
     [50.505, 21.053]
   ];
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
@@ -34,7 +28,6 @@ const MapWithSidebar = () => {
             <CardSection />
           </div>
         </nav>
-        <SearchForm isOpen={sidebarOpen} />
         <MapContainer
           center={[50.0615, 19.937]}
           zoom={9}
@@ -54,4 +47,4 @@ const MapWithSidebar = () => {
   );
 };
 
-export default MapWithSidebar;
+export default Map;
