@@ -1,7 +1,7 @@
 from django.db import models
 from .Routes import Routes
-from Calendar import Calendar
-from Shapes import Shapes
+from .Calendar import Calendar
+from .Shapes import Shapes
 
 class DirectionType(models.TextChoices):
     OUTBOUND = 0, 'Outbound'
