@@ -4,6 +4,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import SearchForm from './SearchForm';
 import Logo from '../assets/Logo.png'
+import CardSection from './CardSection';
 
 const MapWithSidebar = () => {
   const bounds = [
@@ -21,16 +22,8 @@ const MapWithSidebar = () => {
     <div className="relative h-screen w-screen overflow-hidden">
       <div className="flex flex-col h-screen">
         <nav className="bg-neutral-200 p-4">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <div className="">
-              <img src={Logo} alt="Koleje Małopolskie" className="w-24 h-auto"></img>
-            </div>
-            <div className="flex-shrink-0">
-              <a href="/" className="text-blue-950 font-bold text-xl">Koleje Małopolskie - Route Tracker</a>
-            </div>
-            <div className="hidden md:block">
-              <button className="text-blue-950 mr-4 hover:text-blue-500" onClick={toggleSidebar}>Wyszukaj</button>
-            </div>
+          <div>
+            <CardSection />
           </div>
         </nav>
         <SearchForm isOpen={sidebarOpen} /> {/* Use your new component */}
