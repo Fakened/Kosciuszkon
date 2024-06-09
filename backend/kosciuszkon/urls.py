@@ -3,7 +3,9 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.urls import path, re_path
-from kosciuszkon.views import HealthCheckView, CalendarApiView, ResourceApiView, CalendarDatesApiView, FeedInfoApiView
+
+from kosciuszkon.views import HealthCheckView, CalendarApiView, ResourceApiView, CalendarDatesApiView, FeedInfoApiView, TripsApiView
+
 
 
 schema_view = get_schema_view(
@@ -34,6 +36,9 @@ urlpatterns = [
     
     path('routes/', ResourceApiView.as_view(), name='routes'),
     path('routes/<str:id>', ResourceApiView.as_view(), name='routesById'),
+    
+    path('trips/', TripsApiView.as_view(), name='trips'),
+    path('trips/<str:routeId>', TripsApiView.as_view(), name='tripsByRouteId'),
 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
