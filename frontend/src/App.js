@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import PageHelmet from './components/PageHelmet';
+import Navbar from './components/Navbar';
+import Map from './components/IMap';
+import CardSection from './components/CardSection';
+import Details from './components/Details';
 
-function App() {
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
+    <div className="h-screen overflow-y-scroll overflow-x-hidden">
+      <PageHelmet title="Koleje Małopolskie - Monitor Tras"/>
+      <Navbar />
+      <CardSection />
+      <Map />
+      <Details />
     </div>
   );
 }
