@@ -25,14 +25,14 @@ const Details = () => {
   };
 
   return (
-    <div id="details" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh' }}>
+    <div id="details" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '100vh', borderTop: '1px solid black' }}>
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-black p-4 text-4xl font-bold mb-8">Szczegóły Tras</h1>
         <div className="grid grid-cols-11 gap-4">
           {routes.map(route => (
-            <div key={route.route_id} className="m-2 p-2 bg-white border border-black font-bold text-blue-900 rounded-md transition-colors hover:bg-gray-300" onClick={() => handleTileClick(route.route_id)}>
+            <a key={route.route_id} href={`#skok`} className="m-2 p-2 bg-white border border-black font-bold text-blue-900 rounded-md transition-colors hover:bg-gray-300" onClick={() => handleTileClick(route.route_id)}>
               <p className="text-center">{route.route_short_name}</p>
-            </div>
+            </a>
           ))}
         </div>
         {selectedRoute && <ScheduleTable routeId={selectedRoute} />} {/* Wyświetlamy tabelę z rozkładem jazdy tylko jeśli jest wybrana trasa */}
