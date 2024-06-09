@@ -4,8 +4,8 @@ from rest_framework import status
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
-from kosciuszkon.models import Routes, Trips
-from kosciuszkon.serializers import RoutesSerializer, TripsSerializer
+from kosciuszkon.models import StopTimes, Trips
+from kosciuszkon.serializers import 
 
 class ResourceApiView(APIView):
     
