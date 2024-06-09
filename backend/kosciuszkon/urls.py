@@ -3,7 +3,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.urls import path, re_path
-from kosciuszkon.views import HealthCheckView, CalendarApiView, ResourceApiView
+from kosciuszkon.views import HealthCheckView, CalendarApiView, ResourceApiView, CalendarDatesApiView, FeedInfoApiView
 
 
 schema_view = get_schema_view(
@@ -25,6 +25,12 @@ urlpatterns = [
 
     path('calendar/', CalendarApiView.as_view(), name='calendar'),
     path('calendar/<str:id>/', CalendarApiView.as_view(), name='calendar'),
+
+    path('calendar-dates/', CalendarDatesApiView.as_view(), name='calendar-dates'),
+    path('calendar-dates/<str:id>/', CalendarDatesApiView.as_view(), name='calendar-dates'),
+
+    path('feed-info/', FeedInfoApiView.as_view(), name='feed-info'),
+    path('feed-info/<str:id>/', FeedInfoApiView.as_view(), name='feed-info'),
     
     path('routes/', ResourceApiView.as_view(), name='routes'),
     path('routes/<str:id>', ResourceApiView.as_view(), name='routesById'),
