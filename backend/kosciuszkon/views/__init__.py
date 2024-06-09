@@ -1,1 +1,2 @@
 from .HealthCheckView import HealthCheckView
+from .ResourceApiView import ResourceApiView
