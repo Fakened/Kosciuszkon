@@ -1,5 +1,4 @@
 import React from 'react';
-import TrainScheduleTable from './TrainScheduleTable';
 
 const FormWindow = ({ onClose, formType, title }) => {
   const handleSubmit = (e) => {
@@ -59,9 +58,6 @@ const FormWindow = ({ onClose, formType, title }) => {
         )}
         {formType === 'sprawdz-rozklad-form' && (
           <div className="mb-4">
-            <div>
-                <TrainScheduleTable />
-            </div>
           </div>
         )}
       </div>

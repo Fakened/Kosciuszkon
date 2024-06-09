@@ -52,6 +52,8 @@ const Map = () => {
           maxBounds={bounds}
           maxBoundsViscosity={1.0}
           className="flex-grow"
+          scrollWheelZoom={false}
+          scrollWheelZoomControl={false}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
