@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import bgImage from '../assets/home_bg2.svg'; // Importujesz obrazek
-import ScheduleTable from './ScheduleTable'; // Importujesz komponent tabeli z rozkładem jazdy
+import bgImage from '../assets/home_bg2.svg';
+import ScheduleTable from './ScheduleTable';
+import Map from './IMap'
 
 const Details = () => {
   const [routes, setRoutes] = useState([]);
@@ -18,7 +19,7 @@ const Details = () => {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   const handleTileClick = (routeId) => {
     setSelectedRoute(routeId);
@@ -35,7 +36,12 @@ const Details = () => {
             </a>
           ))}
         </div>
-        {selectedRoute && <ScheduleTable routeId={selectedRoute} />} {/* Wyświetlamy tabelę z rozkładem jazdy tylko jeśli jest wybrana trasa */}
+        {selectedRoute && (
+          <>
+            <ScheduleTable routeId={selectedRoute} />
+            <Map routeId={selectedRoute} />
+          </>
+        )}
       </div>
     </div>
   );

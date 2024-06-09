@@ -4,7 +4,6 @@ import L from "leaflet";
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import MarkIcon from '../assets/Mark.png'; 
-import { malopolskaRoutes, routeColors } from './data';
 
 const Map = () => {
   const [krakowStops, setKrakowStops] = useState([]);
@@ -51,23 +50,6 @@ const Map = () => {
     ));
   };
 
-  const renderRoutes = () => {
-    return malopolskaRoutes.map((route) => {
-      const positions = route.stopIds.map(stopId => {
-        const stop = krakowStops.find(s => s.id === stopId);
-        if (stop) {
-          return [stop.lat, stop.lng];
-        } else {
-          console.error(`Stop with id ${stopId} not found.`);
-          return null;
-        }
-      }).filter(pos => pos !== null);
-  
-      return (
-        <Polyline key={route.id} positions={positions} color={routeColors[route.id]} />
-      );
-    });
-  };
 
   return (  
     <div className="relative overflow-hidden z-40">
@@ -88,7 +70,6 @@ const Map = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {renderKrakowStops()}
-          {renderRoutes()}
         </MapContainer>
       </div>
     </div>

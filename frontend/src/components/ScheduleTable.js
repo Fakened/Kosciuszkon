@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ScheduleTable = ({ routeId }) => {
+const ScheduleTable = ({ routeId, setSelectedTripId }) => {
   const [schedule, setSchedule] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0); 
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,11 +14,9 @@ const ScheduleTable = ({ routeId }) => {
         const scheduleData = await Promise.all(trips.map(async (trip) => {
           const stopsResponse = await axios.get(`http://localhost:8000/api/stops/${trip.trip_id}`);
           let stops = stopsResponse.data;
-          console.log(stops)
-          // Sortuj przystanki po czasie przyjazdu
+
           stops.sort((a, b) => new Date(a.stop.arrival_time) - new Date(b.stop.arrival_time));
 
-          // Znajdź początkową godzinę dla trip
           const firstStopTime = stops.length > 0 ? stops[0].arrival_time : null;
 
           return {
@@ -28,7 +26,6 @@ const ScheduleTable = ({ routeId }) => {
           };
         }));
 
-        // Sortuj trip według pierwszego czasu przyjazdu
         scheduleData.sort((a, b) => new Date(a.firstStopTime) - new Date(b.firstStopTime));
 
         setSchedule(scheduleData);
@@ -40,7 +37,6 @@ const ScheduleTable = ({ routeId }) => {
     fetchData();
   }, [routeId]);
 
-  // Pobierz aktualny zestaw przystanków dla bieżącej strony
   const currentStops = schedule.length > 0 ? schedule[currentPage].stops : [];
 
   const handleNextPage = () => {
@@ -64,7 +60,8 @@ const ScheduleTable = ({ routeId }) => {
         </thead>
         <tbody>
           {currentStops.map((stop, index) => (
-            <tr key={index} className={index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"}>
+            <tr key={index} className={index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"}
+              onClick={() => setSelectedTripId(schedule[currentPage].trip.trip_id)}>
               <td className="px-4 py-2 text-center">{schedule[currentPage].trip.route.route_long_name}</td>
               <td className="px-4 py-2 text-center">{schedule[currentPage].trip.route.route_type}</td>
               <td className="px-4 py-2 text-center">{stop.stop.stop_name}</td>
