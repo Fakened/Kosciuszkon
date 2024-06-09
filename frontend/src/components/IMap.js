@@ -1,11 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import L from "leaflet";
+import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import MarkIcon from '../assets/Mark.png'; 
-import { krakowStops, malopolskaRoutes, routeColors } from './data';
+import { malopolskaRoutes, routeColors } from './data';
 
 const Map = () => {
+  const [krakowStops, setKrakowStops] = useState([]);
+
   const bounds = [
     [49.002, 19.243],
     [50.505, 21.053],
@@ -18,11 +21,31 @@ const Map = () => {
     popupAnchor: [0, -32],
   });
 
+  useEffect(() => {
+    const fetchStops = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/stops/");
+        // Przekształcamy dane do oczekiwanego formatu
+        const formattedStops = response.data.map(stop => ({
+          id: stop.stop_id,
+          lat: stop.stop_lat,
+          lng: stop.stop_lon,
+          stop_name: stop.stop_name
+        }));
+        setKrakowStops(formattedStops);
+      } catch (error) {
+        console.error("Error fetching stops:", error);
+      }
+    };
+
+    fetchStops();
+  }, []);
+
   const renderKrakowStops = () => {
     return krakowStops.map((stop) => (
       <Marker key={stop.id} position={[stop.lat, stop.lng]} icon={markIcon}>
         <Popup>
-          Przystanek Kraków {stop.id}
+          {stop.stop_name}
         </Popup>
       </Marker>
     ));
@@ -32,9 +55,14 @@ const Map = () => {
     return malopolskaRoutes.map((route) => {
       const positions = route.stopIds.map(stopId => {
         const stop = krakowStops.find(s => s.id === stopId);
-        return [stop.lat, stop.lng];
-      });
-
+        if (stop) {
+          return [stop.lat, stop.lng];
+        } else {
+          console.error(`Stop with id ${stopId} not found.`);
+          return null;
+        }
+      }).filter(pos => pos !== null);
+  
       return (
         <Polyline key={route.id} positions={positions} color={routeColors[route.id]} />
       );

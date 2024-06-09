@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const ScheduleTable = ({ routeId }) => {
   const [schedule, setSchedule] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,14 +13,25 @@ const ScheduleTable = ({ routeId }) => {
 
         const scheduleData = await Promise.all(trips.map(async (trip) => {
           const stopsResponse = await axios.get(`http://localhost:8000/api/stops/${trip.trip_id}`);
-          return stopsResponse.data.map(stop => ({
+          let stops = stopsResponse.data;
+          console.log(stops)
+          // Sortuj przystanki po czasie przyjazdu
+          stops.sort((a, b) => new Date(a.stop.arrival_time) - new Date(b.stop.arrival_time));
+
+          // Znajdź początkową godzinę dla trip
+          const firstStopTime = stops.length > 0 ? stops[0].arrival_time : null;
+
+          return {
             trip,
-            stop,
-          }));
+            stops,
+            firstStopTime,
+          };
         }));
 
-        console.log(scheduleData)
-        setSchedule(scheduleData.flat());
+        // Sortuj trip według pierwszego czasu przyjazdu
+        scheduleData.sort((a, b) => new Date(a.firstStopTime) - new Date(b.firstStopTime));
+
+        setSchedule(scheduleData);
       } catch (error) {
         console.error('Błąd pobierania danych:', error);
       }
@@ -27,6 +39,17 @@ const ScheduleTable = ({ routeId }) => {
 
     fetchData();
   }, [routeId]);
+
+  // Pobierz aktualny zestaw przystanków dla bieżącej strony
+  const currentStops = schedule.length > 0 ? schedule[currentPage].stops : [];
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => Math.min(prevPage + 1, schedule.length - 1)); 
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 0)); 
+  };
 
   return (
     <div id="skok" className="overflow-x-auto pb-4 w-full pt-4">
@@ -40,16 +63,32 @@ const ScheduleTable = ({ routeId }) => {
           </tr>
         </thead>
         <tbody>
-          {schedule.map((item, index) => (
+          {currentStops.map((stop, index) => (
             <tr key={index} className={index % 2 === 0 ? "bg-gray-200" : "bg-gray-100"}>
-              <td className="px-4 py-2 text-center">{item.trip.route.route_long_name}</td>
-              <td className="px-4 py-2 text-center">{item.trip.route.route_type}</td>
-              <td className="px-4 py-2 text-center">{item.stop.stop.stop_name}</td>
-              <td className="px-4 py-2 text-center">{item.stop.arrival_time}</td>
+              <td className="px-4 py-2 text-center">{schedule[currentPage].trip.route.route_long_name}</td>
+              <td className="px-4 py-2 text-center">{schedule[currentPage].trip.route.route_type}</td>
+              <td className="px-4 py-2 text-center">{stop.stop.stop_name}</td>
+              <td className="px-4 py-2 text-center">{stop.arrival_time}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handlePrevPage}
+          className="bg-[#385088] text-white px-4 py-2 m-2 rounded"
+          disabled={currentPage === 0}
+        >
+          Poprzednia
+        </button>
+        <button
+          onClick={handleNextPage}
+          className="bg-[#385088] text-white px-4 py-2 m-2 rounded"
+          disabled={currentPage === schedule.length - 1}
+        >
+          Następna
+        </button>
+      </div>
     </div>
   );
 };
