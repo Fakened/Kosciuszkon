@@ -4,7 +4,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.urls import path, re_path
 
-from kosciuszkon.views import HealthCheckView, CalendarApiView, ResourceApiView, CalendarDatesApiView, FeedInfoApiView, TripsApiView
+from kosciuszkon.views import HealthCheckView, CalendarApiView, ResourceApiView, CalendarDatesApiView, FeedInfoApiView, TripsApiView, StopsApiView
 
 
 
@@ -39,6 +39,9 @@ urlpatterns = [
     
     path('trips/', TripsApiView.as_view(), name='trips'),
     path('trips/<str:routeId>', TripsApiView.as_view(), name='tripsByRouteId'),
+
+    path('stops/', StopsApiView.as_view(), name='stops'),
+    path('stops/<str:id>', StopsApiView.as_view(), name='stopsById'),
 
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
