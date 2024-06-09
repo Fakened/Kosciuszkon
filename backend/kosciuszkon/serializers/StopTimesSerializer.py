@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from kosciuszkon.models import StopTimes
-from kosciuszkon.serializers import StopsSerializer, TripsSerializer
-
+from .StopsSerializer import StopsSerializer
+from .TripsSerializer import TripsSerializer
 class StopTimesSerializer(serializers.ModelSerializer):
     trip = TripsSerializer()
     stop = StopsSerializer()

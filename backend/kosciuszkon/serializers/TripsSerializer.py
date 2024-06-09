@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from kosciuszkon.models import Trips
-from kosciuszkon.serializers import RoutesSerializer, CalendarSerializer, ShapesSerializer
+from .RoutesSerializer import RoutesSerializer
+from .CalendarSerializer import CalendarSerializer
+from .ShapesSerializer import ShapesSerializer
 
 class TripsSerializer(serializers.ModelSerializer):
     route = RoutesSerializer()
